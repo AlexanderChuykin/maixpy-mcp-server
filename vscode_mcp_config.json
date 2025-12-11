@@ -1,0 +1,7 @@
+{
+  "github.copilot.chat.mcp.servers": {
+    "maixpy-docs": {
+      "url": "http://localhost:8000/sse"
+    }
+  }
+}

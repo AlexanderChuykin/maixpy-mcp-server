@@ -1,0 +1,25 @@
+services:
+  maixpy-mcp:
+    build: .
+    container_name: maixpy-mcp-server
+    ports:
+      - "8000:8000"
+    environment:
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8000
+    volumes:
+      # Монтируем документацию для обновлений без пересборки
+      - ./doc_md:/app/doc_md:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/sse')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge

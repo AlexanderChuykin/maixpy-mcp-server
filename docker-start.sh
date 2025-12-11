@@ -1,0 +1,53 @@
+#!/bin/bash
+
+echo "============================================================"
+echo "Сборка и запуск Docker контейнера MaixPy MCP Server"
+echo "============================================================"
+echo
+
+echo "[1/3] Сборка Docker образа..."
+docker-compose build
+
+if [ $? -ne 0 ]; then
+    echo
+    echo "❌ Ошибка сборки Docker образа!"
+    exit 1
+fi
+
+echo
+echo "[2/3] Запуск контейнера..."
+docker-compose up -d
+
+if [ $? -ne 0 ]; then
+    echo
+    echo "❌ Ошибка запуска контейнера!"
+    exit 1
+fi
+
+echo
+echo "[3/3] Проверка статуса..."
+sleep 3
+docker-compose ps
+
+echo
+echo "============================================================"
+echo "✅ MCP сервер запущен!"
+echo "============================================================"
+echo
+echo "🌐 URL: http://localhost:8000"
+echo "📡 SSE Endpoint: http://localhost:8000/sse"
+echo
+echo "Команды управления:"
+echo "  docker-compose logs -f      - просмотр логов"
+echo "  docker-compose stop         - остановка"
+echo "  docker-compose restart      - перезапуск"
+echo "  docker-compose down         - остановка и удаление"
+echo
+echo "Следующий шаг:"
+echo "Добавьте в VS Code settings.json:"
+echo '  "github.copilot.chat.mcp.servers": {'
+echo '    "maixpy-docs": {'
+echo '      "url": "http://localhost:8000/sse"'
+echo '    }'
+echo '  }'
+echo

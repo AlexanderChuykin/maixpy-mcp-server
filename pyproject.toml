@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maixpy-mcp-server"
+version = "0.1.0"
+description = "MCP Server for MaixPy v4 Documentation"
+authors = [
+    {name = "MaixPy MCP", email = ""}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=0.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[project.scripts]
+maixpy-mcp-server = "mcp_server.server:main"
+
+[tool.setuptools]
+packages = ["mcp_server"]

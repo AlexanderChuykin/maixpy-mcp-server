@@ -1,0 +1,37 @@
+# .dockerignore
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Documentation (not needed in Docker, keep only doc_md)
+*.md
+!doc_md/**/*.md
+
+# Tests (optional, can exclude if not running tests in container)
+# tests/
+
+# Scripts
+run_tests.bat
+run_tests.ps1
+docker-start.bat
+docker-start.sh
+
+# Config examples
+vscode_mcp_config.json
+PROJECT_INFO.txt
